@@ -38,7 +38,7 @@ execute_command() {
 
   EXECUTABLE_COMMAND=("${TOKENS[0]}" "${TOKENS[@]:1}")
   echo >&2 "  INFO: running: " "${EXECUTABLE_COMMAND[@]}"
-  "${EXECUTABLE_COMMAND[@]}"
+  "${EXECUTABLE_COMMAND[@]}" </dev/null || true
 }
 
 if [[ -z "${CI:-}" ]]; then
@@ -56,8 +56,7 @@ grep -lrF "${MARKER_START}" _wiki | while read -r file_to_process; do
       USER_COMMAND="${line##"${MARKER_START}"}"
       USER_COMMAND="${USER_COMMAND%%"${MARKER_END}"}"
 
-      # shellcheck disable=SC2310
-      execute_command "${USER_COMMAND}" </dev/null || true
+      execute_command "${USER_COMMAND}"
     else
       echo "${line}"
     fi
