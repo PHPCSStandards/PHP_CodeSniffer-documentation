@@ -7,7 +7,6 @@ cd "$(dirname "$0")/.."
 MARKER_START='{{COMMAND-OUTPUT "'
 MARKER_END='"}}'
 ALLOWED_COMMANDS=("phpcs" "phpcbf")
-DEFAULT_OPTIONS=("--parallel=1" "--no-cache" "--no-colors" "--report-width=100")
 
 tokenize_command() {
   read -ra TOKENS <<< "$1"
@@ -32,16 +31,12 @@ validate_tokens() {
   done
 }
 
-add_default_options() {
-  EXECUTABLE_COMMAND=("${TOKENS[0]}" "${DEFAULT_OPTIONS[@]}" "${TOKENS[@]:1}")
-}
-
 execute_command() {
   tokenize_command "$1"
   check_allowed_commands
   validate_tokens
-  add_default_options
 
+  EXECUTABLE_COMMAND=("${TOKENS[0]}" "${TOKENS[@]:1}")
   echo >&2 "  INFO: running: " "${EXECUTABLE_COMMAND[@]}"
   "${EXECUTABLE_COMMAND[@]}"
 }
