@@ -1,0 +1,91 @@
+name: Pull Request Comment
+
+on:
+  workflow_run:
+    workflows: ['Publish wiki']
+    types:
+      - completed
+
+# Cancels all previous workflow runs for pull requests that have not completed.
+concurrency:
+  # The concurrency group contains the workflow name and the branch name for pull requests
+  # or the commit hash for any other events.
+  group: ${{ github.workflow }}-${{ github.sha }}
+
+jobs:
+  artifact-review-comment:
+    if: >
+      github.repository == 'PHPCSStandards/PHP_CodeSniffer-documentation' &&
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success'
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      # Needed for the PR comment.
+      pull-requests: write
+
+    name: Comment on a pull request
+
+    steps:
+      - name: Download PR info artifact
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const allArtifacts = await github.rest.actions.listWorkflowRunArtifacts({
+               owner: context.repo.owner,
+               repo: context.repo.repo,
+               run_id: context.payload.workflow_run.id,
+            });
+
+            const matchArtifact = allArtifacts.data.artifacts.filter((artifact) => {
+              return artifact.name == "pr_info"
+            })[0];
+
+            if ( ! matchArtifact ) {
+              core.setFailed( 'No artifact found!' );
+              return;
+            }
+
+            const download = await github.rest.actions.downloadArtifact({
+               owner: context.repo.owner,
+               repo: context.repo.repo,
+               artifact_id: matchArtifact.id,
+               archive_format: 'zip',
+            });
+
+            const fs = require( 'fs' );
+            fs.writeFileSync( '${{ github.workspace }}/pr_info.zip', Buffer.from( download.data ) )
+
+      - name: Unzip PR info artifact
+        run: unzip pr_info.zip
+
+      - name: Read PR number
+        id: pr_number
+        shell: bash
+        run: |
+          value=$(<"pr_number")
+          echo "PR_NR=$value" >> "$GITHUB_OUTPUT"
+
+      - name: Read Wiki artifact URL
+        id: artifact_url
+        shell: bash
+        run: |
+          value=$(<"artifact_url")
+          echo "URL=$value" >> "$GITHUB_OUTPUT"
+
+      - name: "Post comment to review artifact"
+        uses: mshick/add-pr-comment@v2
+        with:
+          issue: ${{ steps.pr_number.outputs.PR_NR }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          message: |
+            **_=== This is an auto-generated comment ===_**
+
+            Thank you for your PR.
+            A dry-run has been executed on your PR, executing all markdown pre-processing for the wiki files.
+
+            Please review the resulting final markdown files via the [created artifact](${{ steps.artifact_url.outputs.URL }}).
+            This is especially important when adding new pages or updating auto-generated output blocks.
+
+            _N.B.: the above link will automatically be updated when this PR is updated._
