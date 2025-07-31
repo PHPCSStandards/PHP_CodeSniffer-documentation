@@ -5,6 +5,7 @@ on:
       - 'main'
     paths:
       - .github/workflows/publish-wiki.yml
+      - .github/workflows/pr-comment.yml
       - build/wiki-code-samples/**
       - build/wiki-command-replacer.sh
       - wiki/**
@@ -12,6 +13,7 @@ on:
   pull_request:
     paths:
       - .github/workflows/publish-wiki.yml
+      - .github/workflows/pr-comment.yml
       - build/wiki-code-samples/**
       - build/wiki-command-replacer.sh
       - wiki/**
@@ -38,8 +40,6 @@ jobs:
     permissions:
       # Needed for the commit to the wiki.
       contents: write
-      # Needed for the PR comment.
-      pull-requests: write
 
     steps:
       - name: Checkout code
@@ -126,22 +126,6 @@ jobs:
           if-no-files-found: error
           retention-days: 10
 
-      - name: "[PR only] Post comment to review artifact"
-        if: ${{ github.event_name == 'pull_request' }}
-        uses: mshick/add-pr-comment@v2
-        with:
-          repo-token: ${{ secrets.COMMENT_ON_PRS_TOKEN }}
-          message: |
-            **_=== This is an auto-generated comment ===_**
-
-            Thank you for your PR.
-            A dry-run has been executed on your PR, executing all markdown pre-processing for the wiki files.
-
-            Please review the resulting final markdown files via the [created artifact](${{ steps.artifact.outputs.artifact-url }}).
-            This is especially important when adding new pages or updating auto-generated output blocks.
-
-            _N.B.: the above link will automatically be updated when this PR is updated._
-
 
       # ################################################################################
       # Deploy to the wiki in the PHPCS repo.
@@ -153,6 +137,7 @@ jobs:
           git_threshold: partial_outage
 
       - name: Deploy to wiki
+        if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository }}
         uses: Andrew-Chen-Wang/github-wiki-action@v5.0.1
         env:
           COMMIT_MSG: ${{ github.event.head_commit.message }}
@@ -166,3 +151,31 @@ jobs:
           dry-run: ${{ github.event_name == 'pull_request' }}
           disable-empty-commits: true
           preprocess: false
+
+
+      # ################################################################################
+      # Dry-run/PRs: save PR info for use in Pull Request Comment workflow.
+      # ################################################################################
+
+      - name: Create temporary directory
+        if: ${{ github.event_name == 'pull_request' }}
+        run: mkdir -p ./pr
+
+      - name: Save PR number
+        if: ${{ github.event_name == 'pull_request' }}
+        env:
+          PR_NUMBER: ${{ github.event.number }}
+        run: echo "${PR_NUMBER}" > ./pr/pr_number
+
+      - name: Save artifact URL
+        if: ${{ github.event_name == 'pull_request' }}
+        env:
+          ARTIFACT_URL: ${{ steps.artifact.outputs.artifact-url }}
+        run: echo "${ARTIFACT_URL}" > ./pr/artifact_url
+
+      - name: Upload PR info as artifact
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr_info
+          path: pr/
