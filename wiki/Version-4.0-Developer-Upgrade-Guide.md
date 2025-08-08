@@ -120,7 +120,7 @@ Type casting for sniff property values set from within a ruleset has been made m
 
 **Upgrading**
 
-Search for sniff which have `public` properties which can be changed from within a ruleset.
+Search for sniffs which have `public` properties which can be changed from within a ruleset.
 
 * If the sniff has workarounds in place to handle non-lowercase string `'true'` or `'false'` values for boolean properties, those workarounds can be removed.
 * If the sniff has workarounds in place to handle (any case) string `'null'` values, those workarounds can be removed.
@@ -174,7 +174,7 @@ For "properties" declared in enums, which is still not allowed in PHP, the metho
 
 ##### Upgrading
 
-The above is significant change in behaviour and how it needs to be handled will depend on the sniff calling the method.
+The above is a significant change in behaviour and how it needs to be handled will depend on the sniff calling the method.
 
 It is recommended to search your codebase for all uses of the `File::getMemberProperties()` method and to review whether the code needs updating.
 
@@ -194,7 +194,7 @@ Also, in all cases, the sniff may need to start taking PHP 8.4 properties on int
 
 ... and the associated `private Config::$overriddenDefaults` property is also no longer static.
 
-In practice, this means that two consecutively created `Config` objects without the same process will now contain the same settings. Previously, settings overridden in the first Config instance, could not be set for the second Config instance.
+In practice, this means that two consecutively created `Config` objects in the same process will now contain the same settings. Previously, settings overridden in the first Config instance, could not be set for the second Config instance.
 
 Typically, this may impact projects which call `new Config` consecutive times programmatically, whether it is for a custom integration or for a custom test suite.
 
@@ -403,7 +403,7 @@ doSomething();
 
 The `AbstractPatternSniff::__construct()` method no longer takes any arguments. The `$ignoreComments` parameter was deprecated in PHPCS 1.4.0.
 
-Since PHPCS 1.4.0, the  AbstractPatternSniff sets the `ignoreComments` option using a `public` var rather than through the constructor.  
+Since PHPCS 1.4.0, the AbstractPatternSniff sets the `ignoreComments` option using a `public` var rather than through the constructor.  
 This allows the setting to be overwritten in `ruleset.xml` files.
 
 **Upgrading**
@@ -462,7 +462,7 @@ The `protected` `getDeclarationNameWithNamespace()` and `getNamespaceOfScope()` 
 
 * The signature of the `DummyFile::setErrorCounts()` method has changed and now expects the following parameters: `$errorCount, $warningCount, $fixableErrorCount, $fixableWarningCount, $fixedErrorCount, $fixedWarningCount`.
 
-* The abstract `PHP_CodeSniffer\Filters\ExactMatch::getBlacklist()` and `PHP_CodeSniffer\Filters\ExactMatch::getWhitelist()` methods have been replaced with abstract `PHP_CodeSniffer\ExactMatch::getDisallowedFiles()` and `PHP_CodeSniffer\ExactMatch::getAllowedFiles()` methods.  
+* The abstract `PHP_CodeSniffer\Filters\ExactMatch::getBlacklist()` and `PHP_CodeSniffer\Filters\ExactMatch::getWhitelist()` methods have been replaced with abstract `PHP_CodeSniffer\Filters\ExactMatch::getDisallowedFiles()` and `PHP_CodeSniffer\Filters\ExactMatch::getAllowedFiles()` methods.  
     If you have custom classes which extend the `ExactMatch` class, implement the new `getDisallowedFiles()` and `getAllowedFiles()` methods instead.  
     Note: this is a name change only. The functionality remains the same.
 
@@ -537,7 +537,7 @@ The Ruleset class now respects sniff selection via `--sniffs=...`, even when in 
 
 If your own test framework contained workarounds to get round the previous restriction, it should now be safe to remove those workarounds and to use the `--sniffs=...` argument when initiating the `Config` class.
 
-Typically, these type of workarounds can be found by searching for calls to the `Ruleset::registerSniffs()` method.
+Typically, these types of workarounds can be found by searching for calls to the `Ruleset::registerSniffs()` method.
 
 <p align="right"><a href="#table-of-contents">back to top</a></p>
 
