@@ -97,7 +97,7 @@ To continue running code style and code quality checks on JS and/or CSS files, u
 There are two kinds of sniffs which are affected by this:
 1. Sniffs which are specific to JS/CSS and only target JS/CSS code.  
     If you use JS/CSS specific sniffs from either PHP_CodeSniffer itself or from an external standard, remove references to these sniffs from your ruleset.
-2. "Mixed" sniffs, i.e. sniffs which target both PHP as well as JS and/or CSS code.  
+2. "Mixed" sniffs, i.e., sniffs which target both PHP as well as JS and/or CSS code.  
     If an external standard you include in your ruleset contains these type of "mixed" sniffs, contact the maintainer of that standard about making the sniff compatible with PHP_CodeSniffer 4.0.
 
 PHP_CodeSniffer >= 3.13.0 will show you deprecation notices for these sniffs to help you find them.
@@ -321,7 +321,7 @@ What to update these to, depends on your use-case.
 
 ## Notable other changes and new features
 
-### Progress, error and debug output is now send to STDERR
+### Progress, error and debug output is now sent to STDERR
 
 This change should make it more straight-forward to pipe output from PHP_CodeSniffer to a file.
 
@@ -352,7 +352,7 @@ Previously a ruleset could already "extend" an array property for a sniff set by
 
 As of PHP_CodeSniffer 4.0, a ruleset can also "extend" the default value of an array property as set in the sniff itself.
 
-The upside of this is, that if you want to default value + some extras, you no longer need to duplicate the default values from sniff array properties in your ruleset.  
+The upside of this is that if you want the default value + some extras, you no longer need to duplicate the default value from a sniff array property in your ruleset.  
 The downside is, of course, that if the default value of the property in the sniff changes, your scans may start failing without warning.
 
 #### Upgrading
