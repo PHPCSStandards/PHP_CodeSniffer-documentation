@@ -122,8 +122,7 @@ To run the quality checks locally, install the following tooling:
     * Run it like so: `markdownlint-cli2`
 * [Lychee](https://github.com/lycheeverse/lychee)
     * [Installation instructions](https://github.com/lycheeverse/lychee?tab=readme-ov-file#installation)
-    * Run it like so: `lychee "./**/*.md"`
-        Note: this command will show "false positives" locally for the `_Sidebar.md` file. These can be ignored.
+    * Run it like so: `lychee "./**/*.md" --exclude-path ./wiki/_Sidebar.md`
 * [CSpell](https://cspell.org/)
     * [Installation instructions](https://cspell.org/docs/installation)
     * Run it like so: `cspell "**/*.md"`
