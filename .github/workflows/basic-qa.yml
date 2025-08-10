@@ -42,7 +42,9 @@ jobs:
       - name: Link Checker
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --cache --max-cache-age 1w --verbose "./**/*.md"
+          # Sidebar file exclusion is needed to work-around an upstream bug.
+          # Should be removed once bug https://github.com/lycheeverse/lychee/issues/1788 has been fixed.
+          args: --cache --max-cache-age 1w --verbose "./**/*.md" --exclude-path ./wiki/_Sidebar.md
           format: markdown
           token: ${{ secrets.GITHUB_TOKEN }}
           fail: true
