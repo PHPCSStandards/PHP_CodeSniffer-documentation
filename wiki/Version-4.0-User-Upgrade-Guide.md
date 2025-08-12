@@ -321,7 +321,7 @@ What to update these to, depends on your use-case.
 
 ## Notable other changes and new features
 
-### Progress, error and debug output is now send to STDERR
+### Progress, error and debug output is now sent to STDERR
 
 This change should make it more straight-forward to pipe output from PHP_CodeSniffer to a file.
 
@@ -352,7 +352,7 @@ Previously a ruleset could already "extend" an array property for a sniff set by
 
 As of PHP_CodeSniffer 4.0, a ruleset can also "extend" the default value of an array property as set in the sniff itself.
 
-The upside of this is, that if you want to default value + some extras, you no longer need to duplicate the default values from sniff array properties in your ruleset.  
+The upside of this is that, if you want to use the default value + some extras, you no longer need to duplicate the default values from sniff array properties in your ruleset.  
 The downside is, of course, that if the default value of the property in the sniff changes, your scans may start failing without warning.
 
 #### Upgrading
