@@ -537,7 +537,7 @@ The Ruleset class now respects sniff selection via `--sniffs=...`, even when in 
 
 If your own test framework contained workarounds to get round the previous restriction, it should now be safe to remove those workarounds and to use the `--sniffs=...` argument when initiating the `Config` class.
 
-Typically, these types of workarounds can be found by searching for calls to the `Ruleset::registerSniffs()` method.
+Typically, these type of workarounds can be found by searching for calls to the `Ruleset::registerSniffs()` method.
 
 <p align="right"><a href="#table-of-contents">back to top</a></p>
 
