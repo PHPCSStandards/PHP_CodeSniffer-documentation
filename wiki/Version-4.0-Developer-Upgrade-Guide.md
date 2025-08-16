@@ -118,6 +118,9 @@ Type casting for sniff property values set from within a ruleset has been made m
 * `null` will now be set to an actual `null` value. Previously, the sniff property would have been set to string `'null'`.
 * Array element values will now also get the type casting treatment. Previously, array values would always be strings.
 
+Note: Array element _keys_ will not get the type cast treatment.
+The only difference for the handling of array element _keys_ is, that an empty string array key would previously, unexpectedly, result in a numeric key. This has now been fixed and empty string array keys will be respected and result in an empty string array key on the sniff property.
+
 **Upgrading**
 
 Search for sniffs which have `public` properties which can be changed from within a ruleset.
@@ -125,6 +128,7 @@ Search for sniffs which have `public` properties which can be changed from withi
 * If the sniff has workarounds in place to handle non-lowercase string `'true'` or `'false'` values for boolean properties, those workarounds can be removed.
 * If the sniff has workarounds in place to handle (any case) string `'null'` values, those workarounds can be removed.
 * If the sniff explicitly expects only string values for array elements, the sniff may need to be updated.
+    Also take note of the fact that array elements can now no longer contain an empty string value as that value will be cast to `null`, same as empty string values for non-array properties.
 * If the sniff has workarounds in place to handle the type casting of `true`, `false` and/or `null` for array elements, those workarounds can be removed.
 
 <p align="right"><a href="#table-of-contents">back to top</a></p>
