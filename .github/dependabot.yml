@@ -13,4 +13,4 @@ updates:
     commit-message:
       prefix: "GH Actions:"
     labels:
-      - "Type: chores/QA"
+      - "Type: chores/QA/automation"
