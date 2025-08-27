@@ -528,11 +528,12 @@ Example: when running `phpcs`, if both auto-fixable as well as non-auto-fixable 
 
 Cumulative exit codes:
 
-| Exit code | Meaning                                                                                                 |
-| --------- | ------------------------------------------------------------------------------------------------------- |
-| `3`       | issues found, mix of auto-fixable and non-auto-fixable (`1` + `2`) (phpcs only)                               |
-| `5`       | issues found, auto-fixable, but some failed to fix (`1` + `4`) (phpcbf only)                                  |
-| `7`       | issues found, mix of auto-fixable and non-auto-fixable, but some failed to fix (`1` + `2` + `4`) (phpcbf only)    |
+| Exit code | Meaning                                                                                                        |
+|-----------|----------------------------------------------------------------------------------------------------------------|
+| `3`       | issues found, mix of auto-fixable and non-auto-fixable (`1` + `2`) (phpcs only)                                |
+| `5`       | issues found, auto-fixable, but some failed to fix (`1` + `4`) (phpcbf only)                                   |
+| `7`       | issues found, mix of auto-fixable and non-auto-fixable, but some failed to fix (`1` + `2` + `4`) (phpcbf only) |
+
 
 The exit codes can be influenced by the following configuration flags: [`ignore_errors_on_exit`](https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Configuration-Options#ignoring-errors-when-generating-the-exit-code), [`ignore_warnings_on_exit`](https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Configuration-Options#ignoring-warnings-when-generating-the-exit-code) and [`ignore_non_auto_fixable_on_exit`](https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Configuration-Options#ignoring-non-auto-fixable-issues-when-generating-the-exit-code).
 
