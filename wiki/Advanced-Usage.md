@@ -515,16 +515,22 @@ If a coding standard or configuration file includes settings to print progress o
 
 As of PHP_CodeSniffer 4.0.0, exit codes are cumulative and composed as follows:
 
-| Exit code | Meaning                                                                                                 |
-| --------- | ------------------------------------------------------------------------------------------------------- |
-| `0`       | clean code base / successful non-scan request (_help/documentation/etc_)                                |
-| `1`       | issues found/remaining, auto-fixable                                                                    |
-| `2`       | issues found/remaining, non-auto-fixable                                                                |
-| `4`       | failure to fix some files/fixer conflict (phpcbf only)                                                  |
-| `16`      | processing error - blocking the actual run of PHP_CodeSniffer, like a parse error in an XML ruleset     |
-| `64`      | requirements for running not met (i.e. minimum PHP version doesn't comply, missing required extensions) |
+| Exit code | Meaning                                                                                                        |
+| --------- | -------------------------------------------------------------------------------------------------------------- |
+| `0`       | clean code base / auto-fixed with no issues remaining / successful non-scan request (_help/documentation/etc_) |
+| `1`       | issues found/remaining, auto-fixable                                                                           |
+| `2`       | issues found/remaining, non-auto-fixable                                                                       |
+| `4`       | failure to fix some files/fixer conflict (phpcbf only)                                                         |
+| `16`      | processing error - blocking the actual run of PHP_CodeSniffer, like a parse error in an XML ruleset            |
+| `64`      | requirements for running not met (i.e. minimum PHP version doesn't comply, missing required extensions)        |
 
-Example: when running `phpcs`, if both auto-fixable as well as non-auto-fixable issues are found, the exit code will be `3` (`1` + `2`).
+The exit codes in some situations can be combined, resulting in a new exit code. These cumulative exit codes are as follows:
+
+| Exit code | Exit codes used | Meaning                                                                                      |
+| --------- | --------------- | -------------------------------------------------------------------------------------------- |
+| `3`       | `1` + `2`       | issues found, mix of auto-fixable and non-auto-fixable (phpcs only)                          |
+| `5`       | `1` + `4`       | issues found, auto-fixable, but some failed to fix (phpcbf only)                             |
+| `7`       | `1` + `2` + `4` | issues found, mix of auto-fixable and non-auto-fixable, but some failed to fix (phpcbf only) |
 
 The exit codes can be influenced by the following configuration flags: [`ignore_errors_on_exit`](https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Configuration-Options#ignoring-errors-when-generating-the-exit-code), [`ignore_warnings_on_exit`](https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Configuration-Options#ignoring-warnings-when-generating-the-exit-code) and [`ignore_non_auto_fixable_on_exit`](https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Configuration-Options#ignoring-non-auto-fixable-issues-when-generating-the-exit-code).
 
