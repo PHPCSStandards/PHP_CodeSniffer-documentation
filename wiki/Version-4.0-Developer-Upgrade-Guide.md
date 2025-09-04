@@ -326,7 +326,32 @@ The `Tokens::FUNCTION_NAME_TOKENS` token array, as well as the deprecated `Token
 
 Typically, search your code base for use of the `Tokens::$functionNameTokens` token array, `T_NS_SEPARATOR`, `T_NAMESPACE` and `T_STRING` tokens and review whether the sniff/code is examining identifier names. If so, update the code to allow for the new tokens.
 
-You may also want to search for checks involving `T_TRUE`, `T_FALSE` and `T_NULL` tokens, as if these are used in a fully qualified form, they will now tokenize as `T_NAME_FULLY_QUALIFIED`, so sniffs may need to take this into account.
+<p align="right"><a href="#table-of-contents">back to top</a></p>
+
+
+#### Fully qualified `\exit`, `\die`, `\true`, `\false`, `\null`
+
+There are only a few keywords which can legitimately be used in their fully qualified form: `\exit`, `\die` (since PHP 8.4), `\true`, `\false` and `\null`.
+And for `\true`, `\false` and `\null`, this only applies to their use as a value. PHP does not allow the fully qualified form in type declarations.
+
+Prior to PHP_CodeSniffer 3.13.3, these keywords in their fully qualified form would be tokenized as `T_NS_SEPARATOR` + `T_STRING`.  
+This was [changed in PHP_CodeSniffer 3.13.3](https://github.com/PHPCSStandards/PHP_CodeSniffer/issues/1201) to `T_NS_SEPARATOR` + _keyword token_.
+
+As of PHP_CodeSniffer 4.0, these keywords will always tokenize to their respective _keyword token_ and the `'content'` of the keyword token will include the namespace separator if the keyword was coded as fully qualified.
+
+In other words, these are the tokenization changes related to the fully qualified form of these keywords:
+
+|           | PHPCS <= 3.13.2               | PHPCS 3.x (3.13.3+)          | PHPCS 4.0+                                                            |
+|-----------|-------------------------------|------------------------------|-----------------------------------------------------------------------|
+| `\exit()` | `T_NS_SEPARATOR` + `T_STRING` | `T_NS_SEPARATOR` + `T_EXIT`  | `T_EXIT` (content: `\exit`, the parentheses are tokenized separately) |
+| `\die()`  | `T_NS_SEPARATOR` + `T_STRING` | `T_NS_SEPARATOR` + `T_EXIT`  | `T_EXIT` (content: `\die`, the parentheses are tokenized separately)  |
+| `\true`   | `T_NS_SEPARATOR` + `T_STRING` | `T_NS_SEPARATOR` + `T_TRUE`  | `T_TRUE` (content: `\true`)                                           |
+| `\false`  | `T_NS_SEPARATOR` + `T_STRING` | `T_NS_SEPARATOR` + `T_FALSE` | `T_FALSE` (content: `\false`)                                         |
+| `\null`   | `T_NS_SEPARATOR` + `T_STRING` | `T_NS_SEPARATOR` + `T_NULL`  | `T_NULL` (content: `\null`)                                           |
+
+##### Upgrading
+
+Search your code base for use of the `T_EXIT`, `T_TRUE`, `T_FALSE` and `T_NULL` tokens and check if the sniff examines the `'content'` index for these tokens. If so, the sniff may need to be adjusted to allow for the keyword in both unqualified and fully qualified form.
 
 > [!TIP]
 > If you want to forbid the use of the fully qualified form of `true`/`false`/`null`, PHPCSExtra offers the [`Universal.PHP.NoFQNTrueFalseNull` sniff](https://github.com/PHPCSStandards/PHPCSExtra?tab=readme-ov-file#universalphpnofqntruefalsenull-wrench-books), which will do just that.
