@@ -482,7 +482,42 @@ The `protected` `getDeclarationNameWithNamespace()` and `getNamespaceOfScope()` 
 <p align="right"><a href="#table-of-contents">back to top</a></p>
 
 
-## Miscellaneous other changes which may affect code extending PHP_CodeSniffer
+## Other changes which may affect code extending PHP_CodeSniffer
+
+### Methods now have more parameter types
+
+Previously a lot of the PHPCS methods already included parameter type declarations for classes and arrays.  
+Now support for PHP < 7.2 has been dropped, all method signatures have been reviewed and additional scalar and nullable parameter type declarations have been added.
+
+As parameter types are contravariant, this is **_not_** a breaking change and overloaded methods in external standards and/or integrations which do not have the corresponding type declaration will not cause any errors.
+
+**Upgrading**
+
+This is typically one of those changes where no action should be taken until support for PHP_CodeSniffer 3.x will be dropped by the external standard and/or integration.
+
+Only once support for PHP_CodeSniffer 3.x has been dropped, add the parameter type declarations.
+
+The method signature changes which are expected to cause the most frequent updates, are as follows:
+* `PHP_CodeSniffer\Sniffs\Sniff::process(File $phpcsFile, int $stackPtr)`
+* `PHP_CodeSniffer\Sniffs\AbstractArraySniff::processSingleLineArray(File $phpcsFile, int $stackPtr, int $arrayStart, int $arrayEnd, array $indices)`
+* `PHP_CodeSniffer\Sniffs\AbstractArraySniff::processMultiLineArray(File $phpcsFile, int $stackPtr, int $arrayStart, int $arrayEnd, array $indices)`
+* `PHP_CodeSniffer\Sniffs\AbstractScopeSniff::processTokenWithinScope(File $phpcsFile, int $stackPtr, int $currScope)`
+* `PHP_CodeSniffer\Sniffs\AbstractScopeSniff::processTokenOutsideScope(File $phpcsFile, int $stackPtr)`
+* `PHP_CodeSniffer\Sniffs\AbstractVariableSniff::processMemberVar(File $phpcsFile, int $stackPtr)`
+* `PHP_CodeSniffer\Sniffs\AbstractVariableSniff::processVariable(File $phpcsFile, int $stackPtr)`
+* `PHP_CodeSniffer\Sniffs\AbstractVariableSniff::processVariableInString(File $phpcsFile, int $stackPtr)`
+* `PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest::getTestFiles(string $testFileBase)`
+* `PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest::setCliValues(string $filename, \PHP_CodeSniffer\Config $config)`
+
+For a full list of parameter types added in the typical public API, please refer to [issue #390](https://github.com/PHPCSStandards/PHP_CodeSniffer/issues/390).
+
+> [!TIP]
+> For efficiency, you may want to add the [proposed _return_ type declarations which will be added in PHP_CodeSniffer 5.0](https://github.com/PHPCSStandards/PHP_CodeSniffer/issues/391) in one go.
+
+<p align="right"><a href="#table-of-contents">back to top</a></p>
+
+
+### Miscellaneous other changes
 
 * The `PHP_CodeSniffer\Config::setSettings()` method no longer returns any value.
     It was always declared as a `void` method, but was previously returning the set value.
