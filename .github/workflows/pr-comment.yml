@@ -29,7 +29,7 @@ jobs:
 
     steps:
       - name: Download PR info artifact
-        uses: actions/github-script@v8
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
         with:
           script: |
             const allArtifacts = await github.rest.actions.listWorkflowRunArtifacts({
@@ -75,7 +75,7 @@ jobs:
           echo "URL=$value" >> "$GITHUB_OUTPUT"
 
       - name: "Post comment to review artifact"
-        uses: mshick/add-pr-comment@v2
+        uses: mshick/add-pr-comment@b8f338c590a895d50bcbfa6c5859251edc8952fc # v2.8.2
         with:
           issue: ${{ steps.pr_number.outputs.PR_NR }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
