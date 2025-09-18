@@ -541,7 +541,7 @@ The exit codes in some situations can be combined, resulting in a new exit code.
 | `5`       | `1` + `4`       | issues found, auto-fixable, but some failed to fix (phpcbf only)                             |
 | `7`       | `1` + `2` + `4` | issues found, mix of auto-fixable and non-auto-fixable, but some failed to fix (phpcbf only) |
 
-The exit codes can be influenced by the following configuration flags: [`ignore_errors_on_exit`](https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Configuration-Options#ignoring-errors-when-generating-the-exit-code), [`ignore_warnings_on_exit`](https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Configuration-Options#ignoring-warnings-when-generating-the-exit-code) and [`ignore_non_auto_fixable_on_exit`](https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Configuration-Options#ignoring-non-auto-fixable-issues-when-generating-the-exit-code).
+The exit codes can be influenced by the following configuration flags: [`ignore_errors_on_exit`](https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Configuration-Options#ignoring-errors-when-generating-the-exit-code), [`ignore_warnings_on_exit`](https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Configuration-Options#ignoring-warnings-when-generating-the-exit-code) and [`ignore_non_auto_fixable_on_exit`](https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Configuration-Options#ignoring-non-auto-fixable-issues-when-generating-the-exit-code-php_codesniffer--400).
 
 
 In PHP_CodeSniffer 3.x, the exit codes were:
