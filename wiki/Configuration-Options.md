@@ -192,7 +192,10 @@ $ phpcs --config-set php_version 70416
 
 ## Ignoring errors when generating the exit code
 
-By default, PHP_CodeSniffer will exit with a non-zero code if any errors or warnings are found. If you want to display errors to the user, but still return with a zero exit code if no warnings are found, you can set the `ignore_errors_on_exit` configuration option. This option is typically used by automated build tools so that a list of errors can be generated without failing the build.
+By default, PHP_CodeSniffer will exit with a non-zero code if any errors or warnings are found.
+
+If you want to display errors to the user, but still return with a zero exit code if no warnings are found, you can set the `ignore_errors_on_exit` configuration option.  
+_This option is typically used by automated build tools so that a list of errors can be generated without failing the build._
 
 ```bash
 $ phpcs --config-set ignore_errors_on_exit 1
@@ -210,7 +213,10 @@ $ phpcs --config-set ignore_warnings_on_exit 1
 
 ## Ignoring warnings when generating the exit code
 
-By default, PHP_CodeSniffer will exit with a non-zero code if any errors or warnings are found. If you want to display warnings to the user, but still return with a zero exit code if no errors are found, you can set the `ignore_warnings_on_exit` configuration option. This option is typically used by automated build tools so that a list of warnings can be generated without failing the build.
+By default, PHP_CodeSniffer will exit with a non-zero code if any errors or warnings are found.
+
+If you want to display warnings to the user, but still return with a zero exit code if no errors are found, you can set the `ignore_warnings_on_exit` configuration option.
+_This option is typically used by automated build tools so that a list of warnings can be generated without failing the build._
 
 ```bash
 $ phpcs --config-set ignore_warnings_on_exit 1
@@ -222,8 +228,9 @@ $ phpcs --config-set ignore_warnings_on_exit 1
 ## Ignoring non-auto-fixable issues when generating the exit code (PHP_CodeSniffer >= 4.0.0)
 
 By default, PHP_CodeSniffer will exit with a non-zero code if any errors or warnings are found, whether these are auto-fixable or not.
-If you want to display non-auto-fixable errors and warnings to the user, but still return with a zero exit code if non-auto-fixable issues are found, you can set the `ignore_non_auto_fixable_on_exit` configuration option.
-This option is typically used by automated build tools so that a `phpcbf` run can exit with `0` if it fixed all fixable issues, but there are still some non-auto-fixable issues remaining.
+
+If you want to display non-auto-fixable errors and warnings to the user, but still return with a zero exit code if non-auto-fixable issues are found, you can set the `ignore_non_auto_fixable_on_exit` configuration option.  
+_This option is typically used by automated build tools so that a `phpcbf` run can exit with `0` if it fixed all fixable issues, but there are still some non-auto-fixable issues remaining._
 
 ```bash
 $ phpcs --config-set ignore_non_auto_fixable_on_exit 1
