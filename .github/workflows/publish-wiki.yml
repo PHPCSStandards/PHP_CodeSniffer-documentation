@@ -55,7 +55,7 @@ jobs:
 
       # Make sure we've gotten the latest PHPCS version from setup-php.
       - name: Retrieve latest release info
-        uses: octokit/request-action@v2.x
+        uses: octokit/request-action@dad4362715b7fb2ddedf9772c8670824af564f0d # v2.4.0
         id: get_latest_release
         with:
           route: GET /repos/PHPCSStandards/PHP_CodeSniffer/releases/latest
