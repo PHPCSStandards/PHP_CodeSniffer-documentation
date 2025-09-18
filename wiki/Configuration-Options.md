@@ -215,7 +215,7 @@ $ phpcs --config-set ignore_warnings_on_exit 1
 
 By default, PHP_CodeSniffer will exit with a non-zero code if any errors or warnings are found.
 
-If you want to display warnings to the user, but still return with a zero exit code if no errors are found, you can set the `ignore_warnings_on_exit` configuration option.
+If you want to display warnings to the user, but still return with a zero exit code if no errors are found, you can set the `ignore_warnings_on_exit` configuration option.  
 _This option is typically used by automated build tools so that a list of warnings can be generated without failing the build._
 
 ```bash
