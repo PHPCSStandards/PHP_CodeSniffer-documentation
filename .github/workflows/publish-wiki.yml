@@ -140,7 +140,7 @@ jobs:
 
       - name: Deploy to wiki
         if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository }}
-        uses: Andrew-Chen-Wang/github-wiki-action@2c80c13ee98aa43683bd77973ef4916e2eedf817 # v5.0.1
+        uses: Andrew-Chen-Wang/github-wiki-action@6448478bd55f1f3f752c93af8ac03207eccc3213 # v5.0.3
         env:
           COMMIT_MSG: ${{ github.event.head_commit.message }}
           DEFAULT_COMMIT_MSG: "Update wiki ${{ github.sha }}"
