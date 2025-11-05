@@ -44,12 +44,12 @@ You may also find the [Customisable Sniff Properties](https://github.com/PHPCSSt
 
 1. The `--standard=...` CLI argument can be passed a comma-separated list of standards to apply, like `--standard=PSR12,myCustomRuleset.xml`.
     If the CLI argument is passed, those standard(s) are applied.
-2. If no `--standard=...` CLI argument is passed, PHP_CodeSniffer will look for the following files in the current directory and directories above it: `.phpcs.xml`, `phpcs.xml`, `.phpcs.xml.dist`, `phpcs.xml.dist`.
-    If PHP_CodeSniffer finds one of these files, that will be the ruleset which will be applied.
+2. If no `--standard=...` CLI argument is passed, PHP_CodeSniffer will look for the following files in the current directory and directories above it: `.phpcs.xml`, `phpcs.xml`, `.phpcs.xml.dist`, `phpcs.xml.dist`.  
+    If PHP_CodeSniffer finds one of these files, that will be the ruleset which will be applied.  
     Note: the files PHPCS looks for are listed in order of precedence, so if both a `.phpcs.xml` file as well as a `phpcs.xml.dist` file are found, the `.phpcs.xml` file takes precedence.
 3. If no (project) ruleset file is found, PHP_CodeSniffer will check if a default standard has been set via `--config-set default_standard [Name]`.
-    If so, PHP_CodeSniffer will use that standard.
-    :warning: Setting the default standard is a user-specific setting, so should not be relied upon.
+    If so, PHP_CodeSniffer will use that standard.  
+    ⚠ Setting the default standard is a user-specific setting, so should not be relied upon.
 4. If no system-default standard was set, PHP_CodeSniffer will apply the PSR12 standard.
 
 <p align="right"><a href="#table-of-contents">back to top</a></p>
