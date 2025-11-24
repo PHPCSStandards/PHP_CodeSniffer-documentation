@@ -243,7 +243,7 @@ $ phpcs --config-set ignore_non_auto_fixable_on_exit 1
 
 ### Setting the path to PHP
 
-The `Generic.PHP.Syntax` sniff will check the syntax of each PHP file using [the built-in PHP linter](http://php.net/manual/en/features.commandline.options.php). Use the `php_path` configuration option to tell the Syntax sniff where to find the PHP binary.
+The `Generic.PHP.Syntax` sniff will check the syntax of each PHP file using [the built-in PHP linter](https://www.php.net/commandline.options). Use the `php_path` configuration option to tell the Syntax sniff where to find the PHP binary.
 
 ```bash
 $ phpcs --config-set php_path /path/to/php
@@ -251,7 +251,7 @@ $ phpcs --config-set php_path /path/to/php
 
 ### Setting the path to CSSLint (PHP_CodeSniffer < 4.0.0)
 
-The `Generic.Debug.CSSLint` sniff will check each CSS file using [CSS Lint](http://csslint.net/). Use the `csslint_path` configuration option to tell the CSSLint sniff where to find the tool.
+The `Generic.Debug.CSSLint` sniff will check each CSS file using [CSS Lint](https://csslint.net/). Use the `csslint_path` configuration option to tell the CSSLint sniff where to find the tool.
 
 ```bash
 $ phpcs --config-set csslint_path /path/to/csslint
@@ -267,7 +267,7 @@ $ phpcs --config-set gjslint_path /path/to/gjslint
 
 ### Setting the path to JSHint (PHP_CodeSniffer < 4.0.0)
 
-The `Generic.Debug.JSHint` sniff will check each JavaScript file using [JSHint](http://www.jshint.com/), a tool to detect errors and potential problems in JavaScript code. Use the `jshint_path` configuration option to tell the JSHint sniff where to find the tool.
+The `Generic.Debug.JSHint` sniff will check each JavaScript file using [JSHint](https://jshint.com/), a tool to detect errors and potential problems in JavaScript code. Use the `jshint_path` configuration option to tell the JSHint sniff where to find the tool.
 
 ```bash
 $ phpcs --config-set jshint_path /path/to/jshint.js
@@ -281,7 +281,7 @@ $ phpcs --config-set rhino_path /path/to/rhino
 
 ### Setting the path to JSLint (PHP_CodeSniffer < 4.0.0)
 
-The `Squiz.Debug.JSLint` sniff will check each JavaScript file using [JSLint](http://www.jslint.com/), a JavaScript program that looks for problems in JavaScript programs. Use the `jslint_path` configuration option to tell the JSLint sniff where to find the tool.
+The `Squiz.Debug.JSLint` sniff will check each JavaScript file using [JSLint](https://www.jslint.com/), a JavaScript program that looks for problems in JavaScript programs. Use the `jslint_path` configuration option to tell the JSLint sniff where to find the tool.
 
 ```bash
 $ phpcs --config-set jslint_path /path/to/jslint.js
