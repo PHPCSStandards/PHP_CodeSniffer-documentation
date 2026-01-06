@@ -295,7 +295,7 @@ $ phpcs --config-set rhino_path /path/to/rhino
 
 ### Setting the path to JavaScript Lint (PHP_CodeSniffer < 4.0.0)
 
-The `Squiz.Debug.JavascriptLint` sniff will check each JavaScript file using [JavaScript Lint](http://www.javascriptlint.com/), a tool that checks all your JavaScript source code for common mistakes without actually running the script or opening the web page. Use the `jsl_path` configuration option to tell the JavaScript Lint sniff where to find the tool.
+The `Squiz.Debug.JavascriptLint` sniff will check each JavaScript file using [JavaScript Lint](https://web.archive.org/web/20240905154532/https://www.javascriptlint.com/), a tool that checks all your JavaScript source code for common mistakes without actually running the script or opening the web page. Use the `jsl_path` configuration option to tell the JavaScript Lint sniff where to find the tool.
 
 ```bash
 $ phpcs --config-set jsl_path /path/to/jsl
