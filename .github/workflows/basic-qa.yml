@@ -16,13 +16,13 @@ concurrency:
 jobs:
   yamllint:
     name: 'Lint Yaml'
-    uses: PHPCSStandards/.github/.github/workflows/reusable-yamllint.yml@9d51cbe2ff0bde5f7f5b2cf7608e9e13d593c6f2 # v1.0.0
+    uses: PHPCSStandards/.github/.github/workflows/reusable-yamllint.yml@a06ac9fa50dcd1d98cc581e9a4e331363a69ea09 # v1.1.0
     with:
       strict: true
 
   markdownlint:
     name: 'Lint Markdown'
-    uses: PHPCSStandards/.github/.github/workflows/reusable-markdownlint.yml@9d51cbe2ff0bde5f7f5b2cf7608e9e13d593c6f2 # v1.0.0
+    uses: PHPCSStandards/.github/.github/workflows/reusable-markdownlint.yml@a06ac9fa50dcd1d98cc581e9a4e331363a69ea09 # v1.1.0
 
   linkcheck:
     name: "Check links"
@@ -64,7 +64,7 @@ jobs:
           persist-credentials: false
 
       - name: Spellcheck
-        uses: streetsidesoftware/cspell-action@e5a858a18b7e0b56e0342b1dcad796308b7341a2 # v8.1.1
+        uses: streetsidesoftware/cspell-action@24fa8d3096a314ce263f39578744e9d9f8d80acf # v8.1.2
         with:
           # Define glob patterns to filter the files to be checked. Use a new line between patterns to define multiple patterns.
           files: '**/*.md'
