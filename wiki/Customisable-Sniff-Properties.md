@@ -1096,19 +1096,11 @@ This sniff checks the depth of imported namespaces inside compound use statement
 <p align="right"><a href="#table-of-contents">back to top</a></p>
 
 
-### PSR12.Operators.OperatorSpacing
-
-| Property Name                  | Type | Default | Available Since |
-| ------------------------------ | ---- | ------- | --------------- |
-| ignoreNewlines                 | bool | false   | 3.3.0           |
-| ignoreSpacingBeforeAssignments | bool | true    | 3.5.0           |
-
-> [!NOTE]
-> All properties are inherited from the [Squiz.WhiteSpace.OperatorSpacing](#squizwhitespaceoperatorspacing) sniff, although the default value of `allowMultipleArguments` is changed.
-
-See the [Squiz.WhiteSpace.OperatorSpacing](#squizwhitespaceoperatorspacing) sniff for an explanation of all properties.
-
-<p align="right"><a href="#table-of-contents">back to top</a></p>
+<!--
+While PSR12.Operators.OperatorSpacing inherits the `ignoreNewlines` and `ignoreSpacingBeforeAssignments` properties
+from the `Squiz.WhiteSpace.OperatorSpacing` sniff, these properties are not handled in the PSR12 sniff,
+so are deliberately not mentioned in this documentation.
+-->
 
 
 ## Squiz Sniffs
