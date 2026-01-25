@@ -1099,7 +1099,10 @@ This sniff checks the depth of imported namespaces inside compound use statement
 | ------------- | ------ | ------- | --------------- |
 | perCompatible | string | 1.0     | 4.0.2           |
 
-This sniff checks the spacing around operators. By default, this sniff is compatible with [PER Coding Style](https://www.php-fig.org/per/coding-style/) 1.0. The setting `perCompatible` can be set to 3.0 or higher to get different behaviour for spacing around multi-catch `|` operators.
+This sniff ensures there is at least one space before and after an operator as per [PSR 12](https://www.php-fig.org/psr/psr-12/)/PER Coding Style 1.0.
+
+As of [PER Coding Style 3.0](https://github.com/php-fig/per-coding-style/blob/3.0.0/spec.md), the spacing requirements for the pipe operator in a multi-`catch` condition have changed to "no spaces around the operator".
+By setting the `perCompatible` property to `'3.0'`or higher, the behaviour of the sniff will reflect the changed PER requirements for multi-catch `|` operators.
 
 ```xml
 <rule ref="PSR12.Operators.OperatorSpacing">
