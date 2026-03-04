@@ -1121,16 +1121,13 @@ By setting the `perCompatible` property to `'3.0'`or higher, the behaviour of th
 </rule>
 ```
 
-Valid: no spaces around the '|' operator in a multi-catch with 'perCompatible=3.0' (or higher):
+Example:
 ```php
 try {
+// Valid with setting perCompatible >= 3.0.
 } catch (Exception|RuntimeException $e) {
-}
-```
-Invalid: spaces around the '|' operator in a multi-catch with 'perCompatible=3.0' (or higher).
-```php
-try {
-} catch (Exception | RuntimeException $e) {
+// Valid with setting perCompatible < 3.0.
+} catch (OtherException | AnotherException $e) {
 }
 ```
 
