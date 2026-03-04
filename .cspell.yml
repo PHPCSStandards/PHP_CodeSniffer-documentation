@@ -53,6 +53,9 @@ words:
   # Used in Wiki Reporting page, "emacs" file.
   - defun
 
+  # Used in Wiki Requirements page.
+  - multibyte
+
   # Used in CONTRIBUTING.
   - maxlevel
   - replacer
