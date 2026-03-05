@@ -16,13 +16,13 @@ concurrency:
 jobs:
   yamllint:
     name: 'Lint Yaml'
-    uses: PHPCSStandards/.github/.github/workflows/reusable-yamllint.yml@a06ac9fa50dcd1d98cc581e9a4e331363a69ea09 # v1.1.0
+    uses: PHPCSStandards/.github/.github/workflows/reusable-yamllint.yml@0d44fe2771ae7bc1254a0a4ec596d8110d16d3dc # v1.1.1
     with:
       strict: true
 
   markdownlint:
     name: 'Lint Markdown'
-    uses: PHPCSStandards/.github/.github/workflows/reusable-markdownlint.yml@a06ac9fa50dcd1d98cc581e9a4e331363a69ea09 # v1.1.0
+    uses: PHPCSStandards/.github/.github/workflows/reusable-markdownlint.yml@0d44fe2771ae7bc1254a0a4ec596d8110d16d3dc # v1.1.1
 
   linkcheck:
     name: "Check links"
@@ -42,7 +42,7 @@ jobs:
           restore-keys: cache-lychee-
 
       - name: Link Checker
-        uses: lycheeverse/lychee-action@a8c4c7cb88f0c7386610c35eb25108e448569cb0 # v2.7.0
+        uses: lycheeverse/lychee-action@8646ba30535128ac92d33dfc9133794bfdd9b411 # v2.8.0
         with:
           # Sidebar file exclusion is needed to work-around an upstream bug.
           # Should be removed once bug https://github.com/lycheeverse/lychee/issues/1788 has been fixed.
@@ -64,7 +64,7 @@ jobs:
           persist-credentials: false
 
       - name: Spellcheck
-        uses: streetsidesoftware/cspell-action@d5d910b521ad408f1e7383c24609079f5a88bdca # v8.2.0
+        uses: streetsidesoftware/cspell-action@9cd41bb518a24fefdafd9880cbab8f0ceba04d28 # v8.3.0
         with:
           # Define glob patterns to filter the files to be checked. Use a new line between patterns to define multiple patterns.
           files: '**/*.md'
