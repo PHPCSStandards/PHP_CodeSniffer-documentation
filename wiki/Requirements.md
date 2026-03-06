@@ -6,7 +6,8 @@ Additionally, PHP_CodeSniffer requires the following PHP extensions to be enable
 - SimpleXML: used to process ruleset XML files
 - XMLWriter: used to create some report formats
 
-The following PHP extension is not required, but is strongly recommended:
+The following PHP extensions are not required, but are strongly recommended:
 - iconv: used for accurate character length calculation in files containing multibyte characters. Without this extension, some sniffs, like `Generic.Files.LineLength`, may report incorrect results for lines containing non-ASCII characters, as PHP_CodeSniffer will fall back to byte-based length calculations.
+- PCNTL: required for parallel processing via the `--parallel` CLI option. Without this extension, PHP_CodeSniffer will not be able to check multiple files simultaneously.
 
 Individual sniffs may have additional requirements such as external applications and scripts. See the [Configuration Options](https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Configuration-Options) manual page for a list of these requirements.
