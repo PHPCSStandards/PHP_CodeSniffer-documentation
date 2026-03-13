@@ -11,6 +11,9 @@ The following PHP extensions are not required, but are strongly recommended:
 - PCNTL: required for parallel processing via the `--parallel` CLI option. Without this extension, PHP_CodeSniffer will not be able to check multiple files simultaneously.
 
 > [!WARNING]
-> The gRPC PHP extension is known to cause PHP_CodeSniffer to hang when running with parallel processing enabled. If the gRPC extension is loaded, make sure the `grpc.enable_fork_support` and `grpc.poll_strategy` ini settings are properly configured. See [this comment](https://github.com/PHPCSStandards/PHP_CodeSniffer/issues/294#issuecomment-1906558549) for more details.
+> The gRPC PHP extension is known to cause PHP_CodeSniffer to hang when running with parallel processing enabled. If the gRPC extension is loaded, either do not use the `--parallel` CLI option or configure the extension's ini settings as follows:
+> ```
+> phpcs -d grpc.enable_fork_support=1 -d grpc.poll_strategy=epoll1 [other options] <file|directory>
+> ```
 
 Individual sniffs may have additional requirements such as external applications and scripts. See the [Configuration Options](https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Configuration-Options) manual page for a list of these requirements.
