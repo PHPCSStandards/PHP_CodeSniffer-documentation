@@ -584,14 +584,15 @@ If a coding standard ships a custom report class, ensure the standard is
 installed (e.g. via Composer) and reference the report using its
 **fully-qualified class name**:
 
-```
+<!-- cspell:ignore sonarqube Sonarqube -->
+```bash
 $ phpcs --report=My\\Standard\\Reports\\Sonarqube /path/to/code
 ```
 
 When using the `--report-[type]` syntax for multiple reports, replace
 back­slashes with periods:
 
-```
+```bash
 $ phpcs --report-full --report-My.Standard.Reports.Sonarqube=/path/to/sonarqube.json /path/to/code
 ```
 
