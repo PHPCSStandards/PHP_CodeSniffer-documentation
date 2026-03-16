@@ -12,7 +12,7 @@ patterns:
   - name: markdown_code_block
     pattern: |
       /
-          ^((?:>\s*)?`{3,})[a-z]+  # match the ``` with a language modifier, optionally inside a blockquote
+          ^([\s>]*`{3,})[a-z]+  # match the ``` with a language modifier, optionally inside a blockquote
           [\s\S]*?                  # the block of code
           ^\1                       # end of the block
       /gmx
