@@ -13,8 +13,8 @@ patterns:
     pattern: |
       /
           ^([\s>]*`{3,})[a-z]+  # match the ``` with a language modifier, optionally inside a blockquote
-          [\s\S]*?                  # the block of code
-          ^\1                       # end of the block
+          [\s\S]*?              # the block of code
+          ^\1                   # end of the block
       /gmx
   - name: markdown_inline_code
     pattern: /(\s*`)[^`\n]{3,}`/gmx
