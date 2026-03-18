@@ -5,9 +5,12 @@ Additionally, PHP_CodeSniffer requires the following PHP extensions to be enable
 - [Tokenizer][tokenizer]: used by the core tokenizer to process PHP files
 - [SimpleXML][simplexml]: used to process ruleset XML files
 - [XMLWriter][xmlwriter]: used to create some report formats
+- [libxml]: required by the SimpleXML and XMLWriter extensions
 
 The following PHP extensions are not required, but are strongly recommended:
+- [DOM][dom]: used for displaying the sniff documentation via the `--generator=...` option.
 - [iconv]: used for accurate character length calculation in files containing multibyte characters. Without this extension, some sniffs, like `Generic.Files.LineLength`, may report incorrect results for lines containing non-ASCII characters, as PHP_CodeSniffer will fall back to byte-based length calculations.
+- [json]: required for the cache functionality, as well as for the JSON report output.
 - [PCNTL][pcntl]: required for parallel processing via the `--parallel` CLI option. Without this extension, PHP_CodeSniffer will not be able to check multiple files simultaneously.
 
 Individual sniffs may have additional requirements such as external applications and scripts. See the [Configuration Options](https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Configuration-Options) manual page for a list of these requirements.
@@ -18,8 +21,11 @@ Individual sniffs may have additional requirements such as external applications
 > phpcs -d grpc.enable_fork_support=1 -d grpc.poll_strategy=epoll1 [other options] <file|directory>
 > ```
 
+[dom]:       https://www.php.net/book.dom
 [grpc]:      https://grpc.io/docs/languages/php/
 [iconv]:     https://www.php.net/book.iconv
+[json]:      https://www.php.net/book.json
+[libxml]:    https://www.php.net/book.libxml
 [pcntl]:     https://www.php.net/book.pcntl
 [simplexml]: https://www.php.net/book.simplexml
 [tokenizer]: https://www.php.net/book.tokenizer
