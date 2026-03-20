@@ -48,7 +48,7 @@ jobs:
           persist-credentials: false
 
       - name: Install PHP
-        uses: shivammathur/setup-php@44454db4f0199b8b9685a5d763dc37cbf79108e1 # 2.36.0
+        uses: shivammathur/setup-php@accd6127cb78bee3e8082180cb391013d204ef9f # 2.37.0
         with:
           php-version: 'latest'
           ini-values: error_reporting=-1, display_errors=On, display_startup_errors=On, log_errors_max_len=0
@@ -140,7 +140,7 @@ jobs:
 
       - name: Deploy to wiki
         if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository }}
-        uses: Andrew-Chen-Wang/github-wiki-action@6448478bd55f1f3f752c93af8ac03207eccc3213 # v5.0.3
+        uses: Andrew-Chen-Wang/github-wiki-action@64efa0a9436db17670a2259e0ac249d6f08bb352 # v5.0.4
         env:
           COMMIT_MSG: ${{ github.event.head_commit.message }}
           DEFAULT_COMMIT_MSG: "Update wiki ${{ github.sha }}"
