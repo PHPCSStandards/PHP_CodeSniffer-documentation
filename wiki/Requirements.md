@@ -11,7 +11,7 @@ The following PHP extensions are not required, but are **_strongly recommended_*
 - **[DOM][dom]**: used for displaying the sniff documentation via the `--generator=...` option.
 - **[iconv]**: used for accurate character length calculation in files containing multibyte characters.  
     Without this extension, some sniffs, like `Generic.Files.LineLength`, may report incorrect results for lines containing non-ASCII characters, as PHP_CodeSniffer will fall back to byte-based length calculations.  
-    Additionally, the following reports may not work correctly without this extension: [Checkstyle][wiki-report-checkstyle], [JUnit][wiki-report-junit] and [XML][wiki-report-xml].
+    Additionally, the following reports will not work without this extension if the project `encoding` is not UTF-8: [Checkstyle][wiki-report-checkstyle], [JUnit][wiki-report-junit] and [XML][wiki-report-xml].
 - **[json]**: required for the cache functionality, as well as for the [JSON report][wiki-report-json] output.
 - **[PCNTL][pcntl]**: required for parallel processing via the `--parallel` CLI option.  
     Without this extension, PHP_CodeSniffer will not be able to check multiple files simultaneously.
