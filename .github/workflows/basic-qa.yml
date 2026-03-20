@@ -16,13 +16,13 @@ concurrency:
 jobs:
   yamllint:
     name: 'Lint Yaml'
-    uses: PHPCSStandards/.github/.github/workflows/reusable-yamllint.yml@0d44fe2771ae7bc1254a0a4ec596d8110d16d3dc # v1.1.1
+    uses: PHPCSStandards/.github/.github/workflows/reusable-yamllint.yml@3d96a6d85381655b6cb0bc4eac175a78f18d9d8f # v1.1.2
     with:
       strict: true
 
   markdownlint:
     name: 'Lint Markdown'
-    uses: PHPCSStandards/.github/.github/workflows/reusable-markdownlint.yml@0d44fe2771ae7bc1254a0a4ec596d8110d16d3dc # v1.1.1
+    uses: PHPCSStandards/.github/.github/workflows/reusable-markdownlint.yml@3d96a6d85381655b6cb0bc4eac175a78f18d9d8f # v1.1.2
 
   linkcheck:
     name: "Check links"
@@ -35,7 +35,7 @@ jobs:
           persist-credentials: false
 
       - name: Restore lychee cache
-        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
+        uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
         with:
           path: .lycheecache
           key: cache-lychee-${{ github.sha }}
