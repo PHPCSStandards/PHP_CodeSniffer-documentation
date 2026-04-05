@@ -75,7 +75,7 @@ jobs:
           echo "URL=$value" >> "$GITHUB_OUTPUT"
 
       - name: "Post comment to review artifact"
-        uses: mshick/add-pr-comment@ffd016c7e151d97d69d21a843022fd4cd5b96fe5 # v3.9.0
+        uses: mshick/add-pr-comment@64b8e914979889d746c99dea15a76e77ef64580a # v3.10.0
         with:
           issue: ${{ steps.pr_number.outputs.PR_NR }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
