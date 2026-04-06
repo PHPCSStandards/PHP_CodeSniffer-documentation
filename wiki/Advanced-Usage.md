@@ -36,7 +36,7 @@ $ phpcs --ignore=*/tests/*,*/data/* /path/to/code
 ```
 
 > [!IMPORTANT]
-> The ignore patterns are treated as **case-insensitive** regular expressions. In addition to this, be aware that `*` is converted to `.*` for convenience in simple patterns, like those used in the example above. (So use `*` anywhere you would normally use `.*`.) Also ensure you escape any `.` characters that you want treated as a literal dot, such as when checking file extensions. So if you are checking for `.inc` in your ignore pattern, use `\.inc` or `\.inc$` instead.
+> The ignore patterns are treated as **case-insensitive** regular expressions. In addition to this, be aware that `*` is converted to `.*` for convenience in simple patterns, like those used in the example above. So use `*` anywhere you would normally use `.*`. Also ensure you escape any `.` characters that you want treated as a literal dot, such as when checking file extensions. So if you are checking for `.inc` in your ignore pattern, use `\.inc` or `\.inc$` instead.
 
 You can also tell PHP_CodeSniffer to ignore a file using a special comment inserted at the top of the file. This will stop the file from being checked, even if it does not match the ignore pattern.
 
