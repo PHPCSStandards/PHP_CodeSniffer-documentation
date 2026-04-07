@@ -556,3 +556,63 @@ In PHP_CodeSniffer 3.x, the exit codes were:
 And the following configuration flags were available: [`ignore_errors_on_exit`](https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Configuration-Options#ignoring-errors-when-generating-the-exit-code), [`ignore_warnings_on_exit`](https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Configuration-Options#ignoring-warnings-when-generating-the-exit-code).
 
 <p align="right"><a href="#table-of-contents">back to top</a></p>
+
+
+## Showing Sniff Documentation
+
+Some sniffs ship with documentation that explains what they check, along with valid and invalid code examples. PHP_CodeSniffer can print this documentation for the sniffs in a coding standard using the `--generator` command line argument.
+
+```bash
+$ phpcs --standard=PSR12 --generator=Text
+```
+
+For example, the documentation for the `PSR1.Files.SideEffects` sniff looks like this:
+
+```text
+{{COMMAND-OUTPUT "phpcs --standard=PSR1 --sniffs=PSR1.Files.SideEffects --generator=Text"}}
+```
+
+> [!NOTE]
+> Not every sniff in a coding standard ships with documentation. Sniffs without a documentation file are silently skipped, so the output may not cover every sniff that the standard would run during a scan.
+
+### Available Documentation Formats
+
+Three documentation formats are supported. The generator name is case-insensitive.
+
+| Generator  | Description                                                 |
+|------------|-------------------------------------------------------------|
+| `Text`     | Plain text output, suitable for reading in a terminal.      |
+| `HTML`     | HTML document with a table of contents and embedded styles. |
+| `Markdown` | Markdown output.                                            |
+
+To save the generated documentation to a file, redirect the output to a file:
+
+```bash
+$ phpcs --standard=PSR12 --generator=HTML > psr12-docs.html
+```
+
+### Selecting Which Standards and Sniffs to Document
+
+If `--standard` is omitted, PHP_CodeSniffer uses the default coding standard, the same way it does for a normal scan.
+
+Multiple standards can be passed as a comma-separated list. The documentation for each standard is printed in the order the standards are listed:
+
+```bash
+$ phpcs --standard=PSR12,PSR1 --generator=Text
+```
+
+The `--sniffs` and `--exclude` command line arguments work the same way they do during a normal scan, allowing you to limit or exclude documentation for specific sniffs. See [Limiting Results to Specific Sniffs](https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Advanced-Usage#limiting-results-to-specific-sniffs) for the full syntax.
+
+The following example only prints the documentation for a single sniff:
+
+```bash
+$ phpcs --standard=PSR1 --sniffs=PSR1.Classes.ClassDeclaration --generator=Text
+```
+
+The following example prints the documentation for all sniffs in the `PSR1` standard except for the one specified:
+
+```bash
+$ phpcs --standard=PSR1 --exclude=PSR1.Classes.ClassDeclaration --generator=Text
+```
+
+<p align="right"><a href="#table-of-contents">back to top</a></p>
