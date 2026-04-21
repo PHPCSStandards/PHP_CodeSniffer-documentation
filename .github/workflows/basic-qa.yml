@@ -35,7 +35,7 @@ jobs:
           persist-credentials: false
 
       - name: Restore lychee cache
-        uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         with:
           path: .lycheecache
           key: cache-lychee-${{ github.sha }}
@@ -64,7 +64,7 @@ jobs:
           persist-credentials: false
 
       - name: Spellcheck
-        uses: streetsidesoftware/cspell-action@9cd41bb518a24fefdafd9880cbab8f0ceba04d28 # v8.3.0
+        uses: streetsidesoftware/cspell-action@de2a73e963e7443969755b648a1008f77033c5b2 # v8.4.0
         with:
           # Define glob patterns to filter the files to be checked. Use a new line between patterns to define multiple patterns.
           files: '**/*.md'
