@@ -12,16 +12,18 @@ concurrency:
   # or the commit hash for any other events.
   group: ${{ github.workflow }}-${{ github.sha }}
 
+# Permissions should be configured at the job level.
+permissions: {}
+
 jobs:
   artifact-review-comment:
+    permissions:
+      pull-requests: write # To add the PR comment.
+
     if: >
       github.repository == 'PHPCSStandards/PHP_CodeSniffer-documentation' &&
       github.event.workflow_run.event == 'pull_request' &&
       github.event.workflow_run.conclusion == 'success'
-
-    permissions:
-      # Needed for the PR comment.
-      pull-requests: write
 
     name: Comment on a pull request
     runs-on: ubuntu-latest

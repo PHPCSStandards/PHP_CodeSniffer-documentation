@@ -30,11 +30,13 @@ concurrency:
   group: "publish-wiki"
   cancel-in-progress: false
 
+# Permissions should be configured at the job level.
+permissions: {}
+
 jobs:
   publish-wiki:
     permissions:
-      # Needed for the commit to the wiki.
-      contents: write
+      contents: write # To clone the repo and commit to the wiki.
 
     if: github.repository == 'PHPCSStandards/PHP_CodeSniffer-documentation'
 
