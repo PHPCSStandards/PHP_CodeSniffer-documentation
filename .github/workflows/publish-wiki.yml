@@ -54,6 +54,8 @@ jobs:
           ini-values: error_reporting=-1, display_errors=On, display_startup_errors=On, log_errors_max_len=0
           tools: phpcs, phpcbf
           coverage: none
+        env:
+          fail-fast: true
 
       # Make sure we've gotten the latest PHPCS version from setup-php.
       - name: Retrieve latest release info
