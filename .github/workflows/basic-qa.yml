@@ -13,18 +13,30 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
 
+# Permissions should be configured at the job level.
+permissions: {}
+
 jobs:
   yamllint:
+    permissions:
+      contents: read # To clone the repo.
+
     name: 'Lint Yaml'
     uses: PHPCSStandards/.github/.github/workflows/reusable-yamllint.yml@c535983699986d1c538d4e47f33e813fcfbcc8a0 # v1.2.2
     with:
       strict: true
 
   markdownlint:
+    permissions:
+      contents: read # To clone the repo.
+
     name: 'Lint Markdown'
     uses: PHPCSStandards/.github/.github/workflows/reusable-markdownlint.yml@c535983699986d1c538d4e47f33e813fcfbcc8a0 # v1.2.2
 
   linkcheck:
+    permissions:
+      contents: read # To clone the repo.
+
     name: "Check links"
     runs-on: ubuntu-latest
 
@@ -52,6 +64,9 @@ jobs:
           fail: true
 
   spellcheck:
+    permissions:
+      contents: read # To clone the repo.
+
     # Config file: .cspell.yml
 
     name: Spellcheck
@@ -79,6 +94,9 @@ jobs:
           incremental_files_only: false
 
   shellcheck:
+    permissions:
+      contents: read # To clone the repo.
+
     name: 'ShellCheck'
     runs-on: ubuntu-latest
 
