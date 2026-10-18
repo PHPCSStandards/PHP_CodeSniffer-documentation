@@ -52,9 +52,9 @@ jobs:
           fail: true
 
   spellcheck:
-    name: Spellcheck
     # Config file: .cspell.yml
 
+    name: Spellcheck
     runs-on: ubuntu-latest
 
     steps:
