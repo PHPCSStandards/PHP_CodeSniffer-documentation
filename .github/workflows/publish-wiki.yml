@@ -32,14 +32,14 @@ concurrency:
 
 jobs:
   publish-wiki:
-    name: "Publish Wiki"
-    if: github.repository == 'PHPCSStandards/PHP_CodeSniffer-documentation'
-
-    runs-on: ubuntu-latest
-
     permissions:
       # Needed for the commit to the wiki.
       contents: write
+
+    if: github.repository == 'PHPCSStandards/PHP_CodeSniffer-documentation'
+
+    name: "Publish Wiki"
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
@@ -159,6 +159,10 @@ jobs:
 
       # ################################################################################
       # Dry-run/PRs: save PR info for use in Pull Request Comment workflow.
+      #
+      # Note: posting the comment needs to be done via a separate workflow to allow for
+      # the commenting to work on PRs coming from forks.
+      # See issue #42 and PR #43 for full details.
       # ################################################################################
 
       - name: Create temporary directory

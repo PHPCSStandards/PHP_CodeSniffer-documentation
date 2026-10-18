@@ -19,13 +19,12 @@ jobs:
       github.event.workflow_run.event == 'pull_request' &&
       github.event.workflow_run.conclusion == 'success'
 
-    runs-on: ubuntu-latest
-
     permissions:
       # Needed for the PR comment.
       pull-requests: write
 
     name: Comment on a pull request
+    runs-on: ubuntu-latest
 
     steps:
       - name: Download PR info artifact
