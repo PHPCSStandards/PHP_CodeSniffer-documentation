@@ -22,7 +22,7 @@ jobs:
       contents: read # To clone the repo.
 
     name: 'Lint Yaml'
-    uses: PHPCSStandards/.github/.github/workflows/reusable-yamllint.yml@c535983699986d1c538d4e47f33e813fcfbcc8a0 # v1.2.2
+    uses: PHPCSStandards/.github/.github/workflows/reusable-yamllint.yml@559f40470dbce9f7faeab31f82c0be7dfb93228e # v1.3.0
     with:
       strict: true
 
@@ -31,7 +31,7 @@ jobs:
       contents: read # To clone the repo.
 
     name: 'Lint Markdown'
-    uses: PHPCSStandards/.github/.github/workflows/reusable-markdownlint.yml@c535983699986d1c538d4e47f33e813fcfbcc8a0 # v1.2.2
+    uses: PHPCSStandards/.github/.github/workflows/reusable-markdownlint.yml@559f40470dbce9f7faeab31f82c0be7dfb93228e # v1.3.0
 
   linkcheck:
     permissions:
@@ -79,7 +79,7 @@ jobs:
           persist-credentials: false
 
       - name: Spellcheck
-        uses: streetsidesoftware/cspell-action@6f3c77c1406bc930f944ba97e9801a22e42caf58 # v9.1.0
+        uses: streetsidesoftware/cspell-action@ce1816e4ce36532956ac6e983737392774b6e169 # v9.2.0
         with:
           # Define glob patterns to filter the files to be checked. Use a new line between patterns to define multiple patterns.
           files: '**/*.md'
