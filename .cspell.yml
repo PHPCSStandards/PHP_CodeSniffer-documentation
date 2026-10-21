@@ -60,3 +60,6 @@ words:
   - maxlevel
   - replacer
   - Shellcheck
+
+  # Used in newsletters.
+  - Robbert
