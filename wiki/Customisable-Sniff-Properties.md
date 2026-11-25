@@ -1096,11 +1096,42 @@ This sniff checks the depth of imported namespaces inside compound use statement
 <p align="right"><a href="#table-of-contents">back to top</a></p>
 
 
+### PSR12.Operators.OperatorSpacing
+
 <!--
 While PSR12.Operators.OperatorSpacing inherits the `ignoreNewlines` and `ignoreSpacingBeforeAssignments` properties
 from the `Squiz.WhiteSpace.OperatorSpacing` sniff, these properties are not handled in the PSR12 sniff,
 so are deliberately not mentioned in this documentation.
 -->
+
+| Property Name | Type   | Default | Available Since |
+| ------------- | ------ | ------- | --------------- |
+| perCompatible | string | 1.0     | 4.1.0           |
+
+This sniff ensures there is at least one space before and after an operator as per [PSR 12](https://www.php-fig.org/psr/psr-12/)/PER Coding Style 1.0.
+
+As of [PER Coding Style 3.0](https://github.com/php-fig/per-coding-style/blob/3.0.0/spec.md), the spacing requirements for the pipe operator in a multi-`catch` condition have changed to "no spaces around the operator".
+By setting the `perCompatible` property to `'3.0'`or higher, the behaviour of the sniff will reflect the changed PER requirements for multi-catch `|` operators.
+
+```xml
+<rule ref="PSR12.Operators.OperatorSpacing">
+    <properties>
+        <property name="perCompatible" value="3.0" />
+    </properties>
+</rule>
+```
+
+Example:
+```php
+try {
+// Valid with setting perCompatible >= 3.0.
+} catch (Exception|RuntimeException $e) {
+// Valid with setting perCompatible < 3.0.
+} catch (OtherException | AnotherException $e) {
+}
+```
+
+<p align="right"><a href="#table-of-contents">back to top</a></p>
 
 
 ## Squiz Sniffs
