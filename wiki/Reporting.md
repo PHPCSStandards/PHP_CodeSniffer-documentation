@@ -21,6 +21,7 @@
 * [Running Interactively](#running-interactively)
 * [Specifying a Report Width](#specifying-a-report-width)
 * [Writing a Report to a File](#writing-a-report-to-a-file)
+* [Using Custom Report Types](#using-custom-report-types)
 
 ***
 
@@ -568,5 +569,84 @@ $ phpcs --report=xml --report-file=/path/to/file.xml /path/to/code
 
 > [!WARNING]
 > The report will not be written to the screen when using this option. If you still want to view the report, use the -v command line argument to print verbose output.
+
+<p align="right"><a href="#table-of-contents">back to top</a></p>
+
+## Using Custom Report Types
+
+In addition to the built-in report types, PHP_CodeSniffer supports
+custom report types provided by external packages. A custom report is a
+PHP class that implements the `PHP_CodeSniffer\Reports\Report` interface.
+
+### Using a custom report from a coding standard
+
+If a coding standard ships a custom report class, ensure the standard is
+installed (e.g. via Composer) and reference the report using its
+**fully-qualified class name**:
+
+<!-- cspell:ignore sonarqube Sonarqube -->
+```bash
+$ phpcs --report=My\\Standard\\Reports\\Sonarqube /path/to/code
+```
+
+When using the `--report-[type]` syntax for multiple reports, replace
+back­slashes with periods:
+
+```bash
+$ phpcs --report-full --report-My.Standard.Reports.Sonarqube=/path/to/sonarqube.json /path/to/code
+```
+
+### Creating a custom report
+
+To create your own custom report, implement the
+`PHP_CodeSniffer\Reports\Report` interface. The interface requires two
+methods:
+
+| Method | Purpose |
+|---|---|
+| `generateFileReport()` | Called once per file. Print/accumulate partial output and return `TRUE` if the file contained reportable messages, `FALSE` otherwise. |
+| `generate()` | Called once after all files are processed. Receives the cached data from `generateFileReport()` calls and is responsible for producing the final output. |
+
+A minimal custom report class looks like this:
+
+```php
+<?php
+
+namespace MyStandard\Reports;
+
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Reports\Report;
+
+class Sonarqube implements Report
+{
+    public function generateFileReport($report, File $phpcsFile, $showSources=false, $width=80)
+    {
+        // Process $report['messages'] and echo partial data.
+        // Return true if there were messages, false otherwise.
+    }
+
+    public function generate(
+        $cachedData,
+        $totalFiles,
+        $totalErrors,
+        $totalWarnings,
+        $totalFixable,
+        $showSources=false,
+        $width=80,
+        $interactive=false,
+        $toScreen=true
+    ) {
+        // Assemble final output from $cachedData.
+    }
+}
+```
+
+The report class must be loadable by the PHP autoloader. The simplest
+way to achieve this is to distribute the report as part of a Composer
+package and include it in your project's `require-dev` dependencies.
+
+> **Tip:** See the built-in
+> [Json](https://github.com/PHPCSStandards/PHP_CodeSniffer/blob/HEAD/src/Reports/Json.php)
+> report for a complete reference implementation.
 
 <p align="right"><a href="#table-of-contents">back to top</a></p>
